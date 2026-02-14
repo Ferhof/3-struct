@@ -13,22 +13,25 @@ type Bin struct {
 	name       string
 }
 
+func newBinList() BinList {
+	return BinList{}
+}
+
+func newBin(id string, private bool, name string) Bin {
+	return Bin{
+		id:         id,
+		private:    private,
+		created_at: time.Now(),
+		name:       name,
+	}
+}
+
 func main() {
-	bin1 := Bin{
-		id:         "123",
-		private:    false,
-		created_at: time.Now(),
-		name:       "example",
-	}
+	bin1 := newBin("123", false, "example")
+	bin2 := newBin("456", true, "test")
 
-	bin2 := Bin{
-		id:         "456",
-		private:    true,
-		created_at: time.Now(),
-		name:       "test",
-	}
-
-	binList := BinList{bin1}
+	binList := newBinList()
+	binList = append(binList, bin1)
 	binList = append(binList, bin2)
 
 	fmt.Println(binList)
