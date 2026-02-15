@@ -1,36 +1,15 @@
 package main
 
 import (
+	"3-struct/bin"
 	"fmt"
-	"time"
 )
 
-type BinList []Bin
-type Bin struct {
-	id         string
-	private    bool
-	created_at time.Time
-	name       string
-}
-
-func newBinList() BinList {
-	return BinList{}
-}
-
-func newBin(id string, private bool, name string) Bin {
-	return Bin{
-		id:         id,
-		private:    private,
-		created_at: time.Now(),
-		name:       name,
-	}
-}
-
 func main() {
-	bin1 := newBin("123", false, "example")
-	bin2 := newBin("456", true, "test")
+	bin1 := bin.NewBin("123", false, "example")
+	bin2 := bin.NewBin("456", true, "test")
 
-	binList := newBinList()
+	binList := bin.NewBinList()
 	binList = append(binList, bin1)
 	binList = append(binList, bin2)
 
