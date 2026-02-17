@@ -6,6 +6,11 @@ import (
 	"path/filepath"
 )
 
+type FileReaderInterface interface {
+	ReadFile(filename string) ([]byte, error)
+	IsJsonFile(filename string) bool
+}
+
 func ReadFile(filename string) ([]byte, error) {
 	fileData, err := os.ReadFile(filename)
 	if err != nil {

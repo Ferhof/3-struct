@@ -8,6 +8,11 @@ import (
 	"os"
 )
 
+type Storage interface {
+	Read() (bin.List, error)
+	Save(list bin.List)
+}
+
 func Save(list bin.List) {
 	jsonData, err := json.Marshal(list)
 	if err != nil {
