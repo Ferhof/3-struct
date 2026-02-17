@@ -2,6 +2,8 @@ package main
 
 import (
 	"3-struct/bin"
+	"3-struct/file"
+	"3-struct/storage"
 	"fmt"
 )
 
@@ -13,5 +15,19 @@ func main() {
 	binList = append(binList, bin1)
 	binList = append(binList, bin2)
 
-	fmt.Println(binList)
+	files := file.NewOSFileReader()
+	st := storage.NewJSONStorage(files, "data.json")
+
+	if err := st.Save(binList); err != nil {
+		fmt.Println("save error:", err)
+		return
+	}
+
+	loaded, err := st.Read()
+	if err != nil {
+		fmt.Println("read error:", err)
+		return
+	}
+
+	fmt.Println("loaded:", loaded)
 }
