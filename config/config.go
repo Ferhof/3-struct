@@ -11,6 +11,10 @@ func NewConfig() *Config {
 }
 
 func (c *Config) Load() string {
+	key := os.Getenv("KEY")
+	if key == "" {
+		panic("KEY environment variable not set")
+	}
 	c.Key = os.Getenv("KEY")
 	return c.Key
 }
