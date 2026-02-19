@@ -2,10 +2,15 @@ package api
 
 import "3-struct/config"
 
-var key string
+type apiClient struct {
+	key config.Config
+}
 
-func SetKey() {
+func (a apiClient) SetKey() {
 	newConfig := config.NewConfig()
-	newConfig.Load()
-	key = newConfig.Key
+	a.key = config.Config{Key: newConfig.Load()}
+}
+
+func (a apiClient) GetKey() string {
+	return a.key.Key
 }
